@@ -99,6 +99,105 @@
         .section-content ul {
             margin-bottom: 0;
         }
+        #projects .section-content {
+            padding: 32px;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            min-width: 0;
+        }
+        .project-card__inner {
+            display: grid;
+            min-height: 360px;
+        }
+        .project-card__face {
+            grid-area: 1 / 1;
+            display: none;
+            min-height: 360px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 24px;
+            border: 1px solid #d7deea;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 8px 22px rgba(23, 35, 61, 0.12);
+        }
+        .project-card__face.is-active {
+            display: flex;
+            animation: project-card-reveal 300ms ease both;
+        }
+        @keyframes project-card-reveal {
+            from {
+                opacity: 0;
+                transform: rotateY(12deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateY(0);
+            }
+        }
+        .project-card__face h4 {
+            margin-bottom: 12px;
+            letter-spacing: 0.04em;
+        }
+        .project-card__face p {
+            margin-bottom: 16px;
+        }
+        .project-card__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: auto 0 18px;
+        }
+        .project-card__tag {
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #edf1f8;
+            color: #263248;
+            font-family: Arial, sans-serif;
+            font-size: 0.82rem;
+            font-weight: bold;
+        }
+        .project-card__features {
+            margin: 0 0 18px;
+            padding-left: 20px;
+        }
+        .project-card__action {
+            display: inline-block;
+            margin-top: auto;
+            padding: 9px 15px;
+            border: 0;
+            border-radius: 4px;
+            background: #17233d;
+            color: #fff;
+            cursor: pointer;
+            font: bold 0.95rem Arial, sans-serif;
+            text-decoration: none;
+        }
+        .project-card__action:hover {
+            background: #c8784a;
+        }
+        .project-card__action:focus-visible {
+            outline: 3px solid #f7c873;
+            outline-offset: 3px;
+        }
+        .project-card__demo {
+            margin-top: 10px;
+        }
+        .project-card__demo a {
+            color: #9a4d2e;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .project-card__face.is-active {
+                animation: none;
+            }
+        }
         .download-button {
             display: inline-block;
             margin-top: 10px;
@@ -127,13 +226,15 @@
         @media (min-width: 760px) {
             #education,
             #skills,
-            #projects,
             #contact {
                 display: inline-block;
                 width: calc(50% - 16px);
                 margin: 28px 8px;
                 padding: 0;
                 vertical-align: top;
+            }
+            #projects {
+                width: auto;
             }
         }
         @media (max-width: 600px) {
@@ -214,11 +315,57 @@
 <section id="projects">
     <div class="section-content">
     <h3>Projects</h3>
-    <ul>
-        <li>Personal Portfolio Website — a responsive website showcasing my skills and projects.</li>
-        <li></li>
-        <li>Chat Application — real-time chat application using WebSocket and Node.js.</li>
-    </ul>
+    <div class="project-grid">
+        <article class="project-card">
+            <div class="project-card__inner">
+                <div class="project-card__face project-card__front is-active" aria-hidden="false">
+                    <h4>ProjectLens MCP Server</h4>
+                    <p>A secure MCP server that helps AI assistants analyze and search software projects efficiently.</p>
+                    <div class="project-card__tags" aria-label="Technologies">
+                        <span class="project-card__tag">Python</span>
+                        <span class="project-card__tag">MCP</span>
+                        <span class="project-card__tag">GitHub</span>
+                    </div>
+                    <button class="project-card__action" type="button" data-project-flip aria-expanded="false" aria-controls="projectlens-details">View project details</button>
+                </div>
+                <div class="project-card__face project-card__back" id="projectlens-details" aria-hidden="true" inert>
+                    <h4>ProjectLens MCP Server</h4>
+                    <ul class="project-card__features">
+                        <li>Project and code search</li>
+                        <li>Secure filesystem access with path traversal protection</li>
+                        <li>Security-focused error handling</li>
+                        <li>MCP-based AI tool integration</li>
+                        <li>Structured project analysis</li>
+                    </ul>
+                    <button class="project-card__action" type="button" data-project-flip aria-expanded="false" aria-label="Back to ProjectLens MCP Server" aria-controls="projectlens-details">Back to project</button>
+                </div>
+            </div>
+        </article>
+        <article class="project-card">
+            <div class="project-card__inner">
+                <div class="project-card__face project-card__front is-active" aria-hidden="false">
+                    <h4>Sri Lakshmi Shop Website</h4>
+                    <p>A responsive business website that helps customers explore the shop and get in touch.</p>
+                    <div class="project-card__tags" aria-label="Technologies">
+                        <span class="project-card__tag">HTML</span>
+                        <span class="project-card__tag">CSS</span>
+                        <span class="project-card__tag">JavaScript</span>
+                    </div>
+                    <button class="project-card__action" type="button" data-project-flip aria-expanded="false" aria-controls="sri-lakshmi-details">View project details</button>
+                </div>
+                <div class="project-card__face project-card__back" id="sri-lakshmi-details" aria-hidden="true" inert>
+                    <h4>Sri Lakshmi Shop Website</h4>
+                    <ul class="project-card__features">
+                        <li>Responsive design and user-friendly shop presentation</li>
+                        <li>Gmail integration for application communication</li>
+                        <li>Live deployed website</li>
+                    </ul>
+                    <p class="project-card__demo"><a href="https://sri-lakshmi-site.testingwbst.workers.dev" target="_blank" rel="noopener noreferrer">Visit live website</a></p>
+                    <button class="project-card__action" type="button" data-project-flip aria-expanded="false" aria-label="Back to Sri Lakshmi Shop Website" aria-controls="sri-lakshmi-details">Back to project</button>
+                </div>
+            </div>
+        </article>
+    </div>
 </div>
 </section>
 
@@ -247,6 +394,29 @@
     <p>&copy; 2026 A. REPEKKAL. All rights reserved.</p>
     </footer>
  <script>
+    document.querySelectorAll('[data-project-flip]').forEach(button => {
+        button.addEventListener('click', () => {
+            const card = button.closest('.project-card');
+            const flipped = card.classList.toggle('is-flipped');
+            const front = card.querySelector('.project-card__front');
+            const back = card.querySelector('.project-card__back');
+            const activeFace = flipped ? back : front;
+            const inactiveFace = flipped ? front : back;
+
+            inactiveFace.classList.remove('is-active');
+            inactiveFace.setAttribute('aria-hidden', 'true');
+            inactiveFace.setAttribute('inert', '');
+            activeFace.classList.add('is-active');
+            activeFace.removeAttribute('inert');
+            activeFace.setAttribute('aria-hidden', 'false');
+            activeFace.querySelector('[data-project-flip]').focus();
+
+            card.querySelectorAll('[data-project-flip]').forEach(toggle => {
+                toggle.setAttribute('aria-expanded', String(flipped));
+            });
+        });
+    });
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
