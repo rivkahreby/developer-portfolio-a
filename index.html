@@ -251,6 +251,150 @@
         }
 
         .center { text-align: center; }
+
+        .chatbot {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 20;
+            font-family: Arial, sans-serif;
+        }
+        .chatbot__toggle {
+            width: 58px;
+            height: 58px;
+            border: 0;
+            border-radius: 50%;
+            background: #17233d;
+            color: #f7c873;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+            cursor: pointer;
+            font-size: 1.45rem;
+        }
+        .chatbot__toggle:hover,
+        .chatbot__toggle:focus-visible {
+            background: #c8784a;
+            color: #fff;
+            outline: 3px solid #f7c873;
+            outline-offset: 3px;
+        }
+        .chatbot__panel {
+            display: none;
+            flex-direction: column;
+            width: min(360px, calc(100vw - 32px));
+            height: min(480px, calc(100vh - 110px));
+            margin-bottom: 12px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #fff;
+            color: #263248;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+        }
+        .chatbot.is-open .chatbot__panel {
+            display: flex;
+        }
+        .chatbot.is-open .chatbot__toggle {
+            display: none;
+        }
+        .chatbot__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 16px;
+            background: #17233d;
+            color: #f5f1e8;
+        }
+        .chatbot__header h2 {
+            margin: 0;
+            color: #f7c873;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+        }
+        .chatbot__header p {
+            margin: 4px 0 0;
+            color: #d9e2ec;
+            font-size: 0.78rem;
+        }
+        .chatbot__close {
+            border: 0;
+            background: transparent;
+            color: #f5f1e8;
+            cursor: pointer;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+        .chatbot__messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            background: #f4f6fb;
+        }
+        .chatbot__bubble {
+            max-width: 85%;
+            margin-bottom: 10px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+        .chatbot__bubble--bot {
+            background: #fff;
+            border: 1px solid #d7deea;
+            border-bottom-left-radius: 4px;
+        }
+        .chatbot__bubble--user {
+            margin-left: auto;
+            background: #17233d;
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+        .chatbot__suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 14px 10px;
+            background: #f4f6fb;
+        }
+        .chatbot__chip {
+            padding: 6px 10px;
+            border: 1px solid #d7deea;
+            border-radius: 999px;
+            background: #fff;
+            color: #17233d;
+            cursor: pointer;
+            font: bold 0.75rem Arial, sans-serif;
+        }
+        .chatbot__chip:hover {
+            border-color: #c8784a;
+            color: #c8784a;
+        }
+        .chatbot__form {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid #d7deea;
+            background: #fff;
+        }
+        .chatbot__input {
+            flex: 1;
+            min-width: 0;
+            padding: 10px 12px;
+            border: 1px solid #d7deea;
+            border-radius: 8px;
+            font: 0.9rem Arial, sans-serif;
+        }
+        .chatbot__send {
+            padding: 10px 14px;
+            border: 0;
+            border-radius: 8px;
+            background: #c8784a;
+            color: #fff;
+            cursor: pointer;
+            font: bold 0.85rem Arial, sans-serif;
+        }
+        .chatbot__send:hover {
+            background: #a85c35;
+        }
     </style>
 </head>
 <body>
@@ -400,13 +544,38 @@
 <section id="download">
         <div class="section-content center">
                 <h3>Download Resume</h3>
-                <a href="./file.pdf" download="A_Repekkal_Resume.pdf" class="download-button">Download Resume</a>
+                <a href="./file.pdf" download="Repekkal_Resume.pdf" class="download-button">Download Resume</a>
         </div>
 </section>
 
 <footer>
     <p>&copy; 2026 A. REPEKKAL. All rights reserved.</p>
     </footer>
+
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot__panel" id="chatbot-panel" role="dialog" aria-labelledby="chatbot-title" hidden>
+            <div class="chatbot__header">
+                <div>
+                    <h2 id="chatbot-title">Ask Repekkal</h2>
+                    <p>Portfolio assistant</p>
+                </div>
+                <button class="chatbot__close" type="button" data-chatbot-close aria-label="Close chat">&times;</button>
+            </div>
+            <div class="chatbot__messages" id="chatbot-messages" role="log" aria-live="polite"></div>
+            <div class="chatbot__suggestions" id="chatbot-suggestions">
+                <button class="chatbot__chip" type="button" data-chat-prompt="What are your skills?">Skills</button>
+                <button class="chatbot__chip" type="button" data-chat-prompt="Tell me about your projects">Projects</button>
+                <button class="chatbot__chip" type="button" data-chat-prompt="How can I contact you?">Contact</button>
+                <button class="chatbot__chip" type="button" data-chat-prompt="What is your education?">Education</button>
+            </div>
+            <form class="chatbot__form" id="chatbot-form">
+                <label class="visually-hidden" for="chatbot-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Message</label>
+                <input class="chatbot__input" id="chatbot-input" type="text" autocomplete="off" placeholder="Ask about skills, projects, or contact…" />
+                <button class="chatbot__send" type="submit">Send</button>
+            </form>
+        </div>
+        <button class="chatbot__toggle" type="button" data-chatbot-open aria-expanded="false" aria-controls="chatbot-panel" aria-label="Open chat">💬</button>
+    </div>
  <script>
     document.querySelectorAll('[data-project-flip]').forEach(button => {
         button.addEventListener('click', () => {
@@ -444,6 +613,103 @@
             }
         });
     });
+
+    (function initPortfolioChatbot() {
+        const root = document.getElementById('chatbot');
+        const panel = document.getElementById('chatbot-panel');
+        const messages = document.getElementById('chatbot-messages');
+        const form = document.getElementById('chatbot-form');
+        const input = document.getElementById('chatbot-input');
+        const openBtn = document.querySelector('[data-chatbot-open]');
+        const closeBtn = document.querySelector('[data-chatbot-close]');
+        let greeted = false;
+
+        function addMessage(text, from) {
+            const bubble = document.createElement('div');
+            bubble.className = 'chatbot__bubble chatbot__bubble--' + from;
+            bubble.textContent = text;
+            messages.appendChild(bubble);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function replyTo(question) {
+            const q = question.toLowerCase();
+
+            if (/(hello|hi|hey|hai)/.test(q)) {
+                return 'Hi! I can tell you about Repekkal’s skills, education, projects, certifications, or how to get in touch.';
+            }
+            if (/(who|about|yourself|name|introduce)/.test(q)) {
+                return 'A. Repekkal is an aspiring full stack developer and B.Sc. IT graduate from Erode. They build web projects with HTML, CSS, JavaScript and Python, and are open to entry-level roles in Coimbatore and Erode.';
+            }
+            if (/(skill|stack|language|html|css|python|java|mongo)/.test(q)) {
+                return 'Skills: HTML, CSS, JavaScript, C, C++, Java, Python, MongoDB, Git & GitHub, plus VS Code and PyCharm.';
+            }
+            if (/(educat|college|degree|cgpa|study|studied|graduate)/.test(q)) {
+                return 'Bachelor of Information Technology at Erode Christian College of Arts and Science for Women (2023–2026). CGPA: 7.22/10.';
+            }
+            if (/(certif|leadership|naan|salesforce|ibm|zscaler|infosys)/.test(q)) {
+                return 'Certifications include Cybersecurity (Zscaler/Smartbridge, 99%), Salesforce Developer Agentforce Champion (99%), IBM Web Development Fundamentals (97%), Python – Infosys (78%), English Communication – The Hindu STEP (93%), and Project Lead for Naan Mudhalvan (2 terms).';
+            }
+            if (/(projectlens|mcp)/.test(q)) {
+                return 'ProjectLens is a Python MCP server that helps AI assistants search and analyze software projects, with path-traversal protection and structured analysis. GitHub: https://github.com/rivkahreby/projectlens-mcp';
+            }
+            if (/(lakshmi|shop|website)/.test(q)) {
+                return 'Sri Lakshmi Shop is a responsive HTML/CSS/JavaScript business site with contact via Gmail. Live site: https://sri-lakshmi-site.testingwbst.workers.dev';
+            }
+            if (/(project|work|built|portfolio)/.test(q)) {
+                return 'Two featured projects: ProjectLens MCP Server (Python, GitHub) and the Sri Lakshmi Shop website (HTML, CSS, JavaScript, live). Ask about either one for more detail.';
+            }
+            if (/(resume|cv|download)/.test(q)) {
+                return 'You can download the resume from the Download Resume section on this page.';
+            }
+            if (/(contact|email|phone|reach|hire|github)/.test(q)) {
+                return 'Email: rivkahsweety@gmail.com · Phone: +91 8680001633 · GitHub: https://github.com/rivkahreby';
+            }
+            if (/(location|where|erode|coimbatore|based)/.test(q)) {
+                return 'Based in Erode, and open to entry-level developer roles in Coimbatore and Erode.';
+            }
+            return 'I can help with skills, education, projects, certifications, resume, or contact details. What would you like to know?';
+        }
+
+        function sendQuestion(text) {
+            const question = text.trim();
+            if (!question) return;
+            addMessage(question, 'user');
+            addMessage(replyTo(question), 'bot');
+        }
+
+        function openChat() {
+            root.classList.add('is-open');
+            panel.hidden = false;
+            openBtn.setAttribute('aria-expanded', 'true');
+            if (!greeted) {
+                addMessage('Hi, I am Repekkal’s portfolio assistant. Ask me about skills, projects, education, or how to get in touch.', 'bot');
+                greeted = true;
+            }
+            input.focus();
+        }
+
+        function closeChat() {
+            root.classList.remove('is-open');
+            panel.hidden = true;
+            openBtn.setAttribute('aria-expanded', 'false');
+            openBtn.focus();
+        }
+
+        openBtn.addEventListener('click', openChat);
+        closeBtn.addEventListener('click', closeChat);
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            sendQuestion(input.value);
+            input.value = '';
+            input.focus();
+        });
+        document.querySelectorAll('[data-chat-prompt]').forEach(chip => {
+            chip.addEventListener('click', function () {
+                sendQuestion(chip.getAttribute('data-chat-prompt'));
+            });
+        });
+    })();
  </script>
 </body>
 </html>
