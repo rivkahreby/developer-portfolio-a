@@ -1,119 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A. Repekkal | Aspiring Full Stack Developer</title>
     <style>
+        :root {
+            --bg: #0b0507;
+            --bg2: #1a070c;
+            --red: #e11d48;
+            --red2: #7f1230;
+            --tx: #f5eef0;
+            --mut: #b9a3a9;
+            --line: #3a1620;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-padding-top: 70px;
+        }
+
         body {
-            font-family: Georgia, 'Times New Roman', serif;
+            font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
             margin: 0;
             padding: 0 0 32px;
-            background: linear-gradient(rgba(33, 33, 21, 0.827), rgba(156, 139, 108, 0.78)), url("background.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: cover;
-            color: #f5f1e8;
+            background: radial-gradient(ellipse at 70% 0, #4a0f21 0, var(--bg) 60%) fixed, var(--bg);
+            color: var(--tx);
             line-height: 1.6;
         }
-        h1, h2, h3, h4, p {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
             margin-top: 0;
         }
+
         .header-content {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 72px 24px 48px;
+            padding: 56px 24px 40px;
             text-align: center;
         }
+
         .header-content .site-title {
             margin-bottom: 8px;
-            color: #f7c873;
-            font-size: clamp(2.4rem, 7vw, 4.8rem);
-            letter-spacing: 0.08em;
+            color: #fff;
+            font-size: clamp(2.6rem, 9vw, 5rem);
+            letter-spacing: 0.06em;
+            line-height: 1.05;
+            text-shadow: 0 0 30px rgba(225, 29, 72, 0.45);
         }
+
         .header-content .lead {
-            color: #d9e2ec;
-            font-size: 1.15rem;
+            color: var(--red);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
         }
+
+        .header-content p {
+            color: var(--mut);
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .profile-picture {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid #f7c873;
+            width: 230px;
+            height: 290px;
+            border-radius: 22px;
+            border: 2px solid var(--red);
             object-fit: cover;
-            margin-bottom: 20px;
+            object-position: 50% 10%;
+            margin: 10px 0 22px;
+            box-shadow: 0 0 50px rgba(225, 29, 72, 0.4);
         }
+
         nav {
             position: sticky;
             top: 0;
             z-index: 2;
-            background: rgba(15, 20, 38, 0.95);
-            border-top: 1px solid rgba(247, 200, 115, 0.35);
-            border-bottom: 1px solid rgba(247, 200, 115, 0.35);
+            background: rgba(11, 5, 7, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
             padding: 12px 20px;
         }
+
         nav ul {
             list-style-type: none;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px 24px;
+            gap: 8px 22px;
             margin: 0;
             padding: 0;
         }
+
         nav ul li {
             margin: 0;
         }
+
         nav ul li a {
-            color: #f5f1e8;
+            color: var(--mut);
             text-decoration: none;
-            font-family: Arial, sans-serif;
             font-size: 0.9rem;
-            font-weight: bold;
         }
+
         nav ul li a:hover {
-            color: #f7c873;
+            color: var(--red);
         }
+
         section {
             max-width: 1000px;
             margin: 28px auto;
             padding: 0 24px;
         }
+
         .section-content {
-            background: rgba(255, 255, 255, 0.94);
-            padding: 32px;
-            border-left: 5px solid #f7c873;
-            border-radius: 4px;
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+            background: linear-gradient(160deg, var(--bg2), #12060a);
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
             text-align: left;
-            color: #263248;
+            color: var(--mut);
         }
+
         .section-content h2,
         .section-content h3,
         .section-content h4 {
-            color: #17233d;
-            font-family: Arial, sans-serif;
-            letter-spacing: 0.08em;
+            color: var(--tx);
+            letter-spacing: 0.06em;
             text-transform: uppercase;
+            font-size: 1.15rem;
+            border-bottom: 2px solid var(--red);
+            display: inline-block;
+            padding-bottom: 4px;
         }
+
         .section-content ul {
             margin-bottom: 0;
         }
-        #projects .section-content {
-            padding: 32px;
+
+        .section-content a {
+            color: #fb7185;
         }
+
+        #projects .section-content {
+            padding: 28px;
+        }
+
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
             gap: 20px;
         }
+
         .project-card {
             min-width: 0;
         }
+
         .project-card__inner {
             display: grid;
             min-height: 360px;
         }
+
         .project-card__face {
             grid-area: 1 / 1;
             display: none;
@@ -121,109 +177,131 @@
             flex-direction: column;
             align-items: flex-start;
             padding: 24px;
-            border: 1px solid #d7deea;
-            border-radius: 12px;
-            background: #fff;
-            box-shadow: 0 8px 22px rgba(23, 35, 61, 0.12);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--bg);
+            box-shadow: 0 8px 26px rgba(225, 29, 72, 0.12);
         }
+
         .project-card__face.is-active {
             display: flex;
             animation: project-card-reveal 300ms ease both;
         }
+
         @keyframes project-card-reveal {
             from {
                 opacity: 0;
                 transform: rotateY(12deg);
             }
+
             to {
                 opacity: 1;
                 transform: rotateY(0);
             }
         }
+
         .project-card__face h4 {
             margin-bottom: 12px;
-            letter-spacing: 0.04em;
+            border: 0;
+            color: var(--tx);
+            letter-spacing: 0.03em;
         }
+
         .project-card__face p {
             margin-bottom: 16px;
         }
+
         .project-card__tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin: auto 0 18px;
         }
+
         .project-card__tag {
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 999px;
-            background: #edf1f8;
-            color: #263248;
-            font-family: Arial, sans-serif;
+            background: var(--bg2);
+            border: 1px solid var(--line);
+            color: var(--tx);
             font-size: 0.82rem;
-            font-weight: bold;
         }
+
         .project-card__features {
             margin: 0 0 18px;
             padding-left: 20px;
         }
+
         .project-card__action {
             display: inline-block;
             margin-top: auto;
-            padding: 9px 15px;
+            padding: 10px 18px;
             border: 0;
-            border-radius: 4px;
-            background: #17233d;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--red), var(--red2));
             color: #fff;
             cursor: pointer;
-            font: bold 0.95rem Arial, sans-serif;
+            font: 600 0.92rem system-ui, Arial, sans-serif;
             text-decoration: none;
+            box-shadow: 0 0 18px rgba(225, 29, 72, 0.35);
         }
+
         .project-card__action:hover {
-            background: #c8784a;
+            filter: brightness(1.15);
         }
+
         .project-card__action:focus-visible {
-            outline: 3px solid #f7c873;
+            outline: 3px solid var(--red);
             outline-offset: 3px;
         }
+
         .project-card__demo {
             margin-top: 10px;
         }
+
         .project-card__demo a {
-            color: #9a4d2e;
+            color: #fb7185;
             font-weight: bold;
             overflow-wrap: anywhere;
         }
+
         @media (prefers-reduced-motion: reduce) {
             .project-card__face.is-active {
                 animation: none;
             }
         }
+
         .download-button {
             display: inline-block;
             margin-top: 10px;
-            padding: 10px 20px;
-            border-radius: 4px;
-            background: #c8784a;
-            color: white;
-            font-family: Arial, sans-serif;
+            padding: 12px 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--red), var(--red2));
+            color: #fff;
             font-weight: bold;
             text-decoration: none;
+            box-shadow: 0 0 24px rgba(225, 29, 72, 0.45);
         }
+
         .download-button:hover {
-            background: #a85c35;
+            filter: brightness(1.15);
         }
+
         footer {
             max-width: 1000px;
             margin: 40px auto 0;
             padding: 20px 24px 0;
             text-align: center;
-            color: #d9e2ec;
+            color: var(--mut);
         }
+
         ul {
             list-style-type: disc;
             padding-left: 20px;
         }
+
         @media (min-width: 760px) {
+
             #education,
             #skills,
             #contact {
@@ -233,50 +311,58 @@
                 padding: 0;
                 vertical-align: top;
             }
+
             #projects {
                 width: auto;
             }
         }
+
         @media (max-width: 600px) {
             .header-content {
-                padding-top: 42px;
+                padding-top: 36px;
             }
+
             .profile-picture {
-                width: 150px;
-                height: 150px;
+                width: 190px;
+                height: 240px;
             }
+
             .section-content {
-                padding: 24px 20px;
+                padding: 22px 18px;
             }
         }
 
-        .center { text-align: center; }
+        .center {
+            text-align: center;
+        }
 
         .chatbot {
             position: fixed;
             right: 20px;
             bottom: 20px;
             z-index: 20;
-            font-family: Arial, sans-serif;
+            font-family: system-ui, Arial, sans-serif;
         }
+
         .chatbot__toggle {
             width: 58px;
             height: 58px;
             border: 0;
             border-radius: 50%;
-            background: #17233d;
-            color: #f7c873;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+            background: linear-gradient(135deg, var(--red), var(--red2));
+            color: #fff;
+            box-shadow: 0 0 26px rgba(225, 29, 72, 0.55);
             cursor: pointer;
             font-size: 1.45rem;
         }
+
         .chatbot__toggle:hover,
         .chatbot__toggle:focus-visible {
-            background: #c8784a;
-            color: #fff;
-            outline: 3px solid #f7c873;
+            filter: brightness(1.15);
+            outline: 3px solid #fb7185;
             outline-offset: 3px;
         }
+
         .chatbot__panel {
             display: none;
             flex-direction: column;
@@ -284,126 +370,149 @@
             height: min(480px, calc(100vh - 110px));
             margin-bottom: 12px;
             overflow: hidden;
-            border-radius: 12px;
-            background: #fff;
-            color: #263248;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+            border-radius: 18px;
+            background: var(--bg2);
+            color: var(--tx);
+            border: 1px solid var(--line);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
         }
+
         .chatbot.is-open .chatbot__panel {
             display: flex;
         }
+
         .chatbot.is-open .chatbot__toggle {
             display: none;
         }
+
         .chatbot__header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
             padding: 14px 16px;
-            background: #17233d;
-            color: #f5f1e8;
+            background: #12060a;
+            border-bottom: 1px solid var(--line);
         }
+
         .chatbot__header h2 {
             margin: 0;
-            color: #f7c873;
+            color: var(--tx);
             font-size: 0.95rem;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
+            border: 0;
+            padding: 0;
         }
+
         .chatbot__header p {
             margin: 4px 0 0;
-            color: #d9e2ec;
+            color: #34d399;
             font-size: 0.78rem;
         }
+
         .chatbot__close {
             border: 0;
             background: transparent;
-            color: #f5f1e8;
+            color: var(--tx);
             cursor: pointer;
             font-size: 1.4rem;
             line-height: 1;
         }
+
         .chatbot__messages {
             flex: 1;
             overflow-y: auto;
             padding: 14px;
-            background: #f4f6fb;
+            background: var(--bg2);
         }
+
         .chatbot__bubble {
             max-width: 85%;
             margin-bottom: 10px;
-            padding: 10px 12px;
-            border-radius: 12px;
+            padding: 10px 14px;
+            border-radius: 14px;
             font-size: 0.9rem;
             line-height: 1.45;
         }
+
         .chatbot__bubble--bot {
-            background: #fff;
-            border: 1px solid #d7deea;
+            background: #2a0d15;
             border-bottom-left-radius: 4px;
         }
+
         .chatbot__bubble--user {
             margin-left: auto;
-            background: #17233d;
+            background: var(--red2);
             color: #fff;
             border-bottom-right-radius: 4px;
         }
+
         .chatbot__suggestions {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             padding: 0 14px 10px;
-            background: #f4f6fb;
+            background: var(--bg2);
         }
+
         .chatbot__chip {
-            padding: 6px 10px;
-            border: 1px solid #d7deea;
+            padding: 6px 12px;
+            border: 1px solid var(--line);
             border-radius: 999px;
-            background: #fff;
-            color: #17233d;
+            background: none;
+            color: var(--tx);
             cursor: pointer;
-            font: bold 0.75rem Arial, sans-serif;
+            font: 0.78rem system-ui, Arial, sans-serif;
         }
+
         .chatbot__chip:hover {
-            border-color: #c8784a;
-            color: #c8784a;
+            border-color: var(--red);
+            color: #fb7185;
         }
+
         .chatbot__form {
             display: flex;
             gap: 8px;
             padding: 12px;
-            border-top: 1px solid #d7deea;
-            background: #fff;
+            border-top: 1px solid var(--line);
+            background: #12060a;
         }
+
         .chatbot__input {
             flex: 1;
             min-width: 0;
-            padding: 10px 12px;
-            border: 1px solid #d7deea;
-            border-radius: 8px;
-            font: 0.9rem Arial, sans-serif;
-        }
-        .chatbot__send {
             padding: 10px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--bg);
+            color: var(--tx);
+            font: 0.9rem system-ui, Arial, sans-serif;
+        }
+
+        .chatbot__send {
+            padding: 10px 16px;
             border: 0;
-            border-radius: 8px;
-            background: #c8784a;
+            border-radius: 999px;
+            background: var(--red);
             color: #fff;
             cursor: pointer;
-            font: bold 0.85rem Arial, sans-serif;
+            font: 600 0.85rem system-ui, Arial, sans-serif;
         }
+
         .chatbot__send:hover {
-            background: #a85c35;
+            filter: brightness(1.15);
         }
     </style>
 </head>
+
 <body>
     <header class="header-content">
         <h1 class="site-title">A. REPEKKAL</h1>
         <p class="lead">Aspiring Full Stack Developer | B.Sc. IT Graduate</p>
 
         <img class="profile-picture" src="profile.png" alt="Profile picture of A. Repekkal" width="200" height="200" />
-        <p>Building web projects with HTML, CSS, JavaScript and Python. Based in Erode, open to entry-level roles in Coimbatore and Erode.</p>
+        <p>Building web projects with HTML, CSS, JavaScript and Python. Based in Erode, open to entry-level roles in
+            Coimbatore and Erode.</p>
     </header>
     <nav aria-label="Main navigation">
         <ul>
@@ -415,148 +524,163 @@
             <li><a href="#contact">Contact</a></li>
             <li><a href="#download">Download Resume</a></li>
         </ul>
-        </nav>
-               <!-- about section -->
-        <section id="about">
-            <div class="section-content">
+    </nav>
+    <!-- about section -->
+    <section id="about">
+        <div class="section-content">
             <h2>About Me</h2>
-            <p>B.Sc. IT graduate with hands-on experience in HTML, CSS, JavaScript, Java and Python. I built the Sri Lakshmi Shop website and the ProjectLens MCP Server. Looking for an entry-level developer role where I can learn and contribute.</p>
+            <p>B.Sc. IT graduate with hands-on experience in HTML, CSS, JavaScript, Java and Python. I built the Sri
+                Lakshmi Shop website and the ProjectLens MCP Server. Looking for an entry-level developer role where I
+                can learn and contribute.</p>
         </div>
-        </section>
-        <!-- education section -->
-         <section id="education">
-       <div class="section-content">
-        <h3>Education</h3>
-         <ul>
-        <li>Bachelor of Information Technology</li>
-        <li>Erode Christian College Of Arts And Science For Women, 2023–2026</li>
-        <li>CGPA: 7.22/10</li>
-         </ul>
-         </div>
-         </section>
-
-          <!-- skills section -->
-        <section id="skills">
-            <div class="section-content">
-            <h2>Skills</h2>
+    </section>
+    <!-- education section -->
+    <section id="education">
+        <div class="section-content">
+            <h3>Education</h3>
             <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>C++</li>
-            <li>C</li>
-            <li>Java</li>
-            <li>MongoDB</li>
-            <li>Python</li>
-            <li>Git &amp; GitHub</li>
-            <li>VS Code, PyCharm</li>
-        </ul>
-    </div>
+                <li>Bachelor of Information Technology</li>
+                <li>Erode Christian College Of Arts And Science For Women, 2023–2026</li>
+                <li>CGPA: 7.22/10</li>
+            </ul>
+        </div>
     </section>
 
-<section id="certifications">
-    <div class="section-content">
-        <h2>Certifications &amp; Leadership</h2>
-        <ul>
-            <li>Cybersecurity – Zscaler / Smartbridge (99%)</li>
-            <li>Salesforce Developer Agentforce Champion (99%)</li>
-            <li>IBM Web Development Fundamentals (97%)</li>
-            <li>Python – Infosys (78%)</li>
-            <li>English Communication – The Hindu STEP (93%)</li>
-            <li>Project Lead – Naan Mudhalvan Program (2 terms)</li>
-        </ul>
-    </div>
-</section>
-
-<section id="projects">
-    <div class="section-content">
-    <h3>Projects</h3>
-    <div class="project-grid">
-        <article class="project-card">
-            <div class="project-card__inner">
-                <div class="project-card__face project-card__front is-active" aria-hidden="false">
-                    <h4>ProjectLens MCP Server</h4>
-                    <p>A secure MCP server that helps AI assistants analyze and search software projects efficiently.</p>
-                    <div class="project-card__tags" aria-label="Technologies">
-                        <span class="project-card__tag">Python</span>
-                        <span class="project-card__tag">MCP</span>
-                        <span class="project-card__tag">GitHub</span>
-                    </div>
-                    <button class="project-card__action" type="button" data-project-flip aria-expanded="false" aria-controls="projectlens-details">View project details</button>
-                </div>
-                <div class="project-card__face project-card__back" id="projectlens-details" aria-hidden="true" inert>
-                    <h4>ProjectLens MCP Server</h4>
-                    <ul class="project-card__features">
-                        <li>Project and code search</li>
-                        <li>Secure filesystem access with path traversal protection</li>
-                        <li>Security-focused error handling</li>
-                        <li>MCP-based AI tool integration</li>
-                        <li>Structured project analysis</li>
-                    </ul>
-                    <p class="project-card__demo"><a href="https://github.com/rivkahreby/projectlens-mcp" target="_blank" rel="noopener noreferrer">View project on GitHub</a></p>
-                    <button class="project-card__action" type="button" data-project-flip aria-expanded="false" aria-label="Back to ProjectLens MCP Server" aria-controls="projectlens-details">Back to project</button>
-                </div>
-            </div>
-        </article>
-        <article class="project-card">
-            <div class="project-card__inner">
-                <div class="project-card__face project-card__front is-active" aria-hidden="false">
-                    <h4>Sri Lakshmi Shop Website</h4>
-                    <p>A responsive business website that helps customers explore the shop and get in touch.</p>
-                    <div class="project-card__tags" aria-label="Technologies">
-                        <span class="project-card__tag">HTML</span>
-                        <span class="project-card__tag">CSS</span>
-                        <span class="project-card__tag">JavaScript</span>
-                    </div>
-                    <button class="project-card__action" type="button" data-project-flip aria-expanded="false" aria-controls="sri-lakshmi-details">View project details</button>
-                </div>
-                <div class="project-card__face project-card__back" id="sri-lakshmi-details" aria-hidden="true" inert>
-                    <h4>Sri Lakshmi Shop Website</h4>
-                    <ul class="project-card__features">
-                        <li>Responsive design and user-friendly shop presentation</li>
-                        <li>Gmail integration for application communication</li>
-                        <li>Live deployed website</li>
-                    </ul>
-                    <p class="project-card__demo"><a href="https://sri-lakshmi-site.testingwbst.workers.dev" target="_blank" rel="noopener noreferrer">Visit live website</a></p>
-                    <button class="project-card__action" type="button" data-project-flip aria-expanded="false" aria-label="Back to Sri Lakshmi Shop Website" aria-controls="sri-lakshmi-details">Back to project</button>
-                </div>
-            </div>
-        </article>
-    </div>
-</div>
-</section>
-
-<section id="contact">
-    <div class="section-content">
-    <h3>Contact</h3>
-    <p>Email: rivkahsweety@gmail.com</p>
-    <p>Phone: +91 8680001633</p>
-    <p>GitHub: <a href="https://github.com/rivkahreby" target="_blank" rel="noopener noreferrer">github.com/rivkahreby</a></p>
-</div>
-</section>
-<section id="resume">
-    <div class="section-content">
-    <h4>Thank you for visiting my portfolio!</h4>
-    <h4>Feel free to reach out for collaboration or inquiries.</h4>
-    </div>
-</section>
-
-<section id="download">
-        <div class="section-content center">
-                <h3>Download Resume</h3>
-                <a href="./file.pdf" download="Repekkal_Resume.pdf" class="download-button">Download Resume</a>
+    <!-- skills section -->
+    <section id="skills">
+        <div class="section-content">
+            <h2>Skills</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>C++</li>
+                <li>C</li>
+                <li>Java</li>
+                <li>MongoDB</li>
+                <li>Python</li>
+                <li>Git &amp; GitHub</li>
+                <li>VS Code, PyCharm</li>
+            </ul>
         </div>
-</section>
+    </section>
 
-<footer>
-    <p>&copy; 2026 A. REPEKKAL. All rights reserved.</p>
+    <section id="certifications">
+        <div class="section-content">
+            <h2>Certifications &amp; Leadership</h2>
+            <ul>
+                <li>Cybersecurity – Zscaler / Smartbridge (99%)</li>
+                <li>Salesforce Developer Agentforce Champion (99%)</li>
+                <li>IBM Web Development Fundamentals (97%)</li>
+                <li>Python – Infosys (78%)</li>
+                <li>English Communication – The Hindu STEP (93%)</li>
+                <li>Project Lead – Naan Mudhalvan Program (2 terms)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-content">
+            <h3>Projects</h3>
+            <div class="project-grid">
+                <article class="project-card">
+                    <div class="project-card__inner">
+                        <div class="project-card__face project-card__front is-active" aria-hidden="false">
+                            <h4>ProjectLens MCP Server</h4>
+                            <p>A secure MCP server that helps AI assistants analyze and search software projects
+                                efficiently.</p>
+                            <div class="project-card__tags" aria-label="Technologies">
+                                <span class="project-card__tag">Python</span>
+                                <span class="project-card__tag">MCP</span>
+                                <span class="project-card__tag">GitHub</span>
+                            </div>
+                            <button class="project-card__action" type="button" data-project-flip aria-expanded="false"
+                                aria-controls="projectlens-details">View project details</button>
+                        </div>
+                        <div class="project-card__face project-card__back" id="projectlens-details" aria-hidden="true"
+                            inert>
+                            <h4>ProjectLens MCP Server</h4>
+                            <ul class="project-card__features">
+                                <li>Project and code search</li>
+                                <li>Secure filesystem access with path traversal protection</li>
+                                <li>Security-focused error handling</li>
+                                <li>MCP-based AI tool integration</li>
+                                <li>Structured project analysis</li>
+                            </ul>
+                            <p class="project-card__demo"><a href="https://github.com/rivkahreby/projectlens-mcp"
+                                    target="_blank" rel="noopener noreferrer">View project on GitHub</a></p>
+                            <button class="project-card__action" type="button" data-project-flip aria-expanded="false"
+                                aria-label="Back to ProjectLens MCP Server" aria-controls="projectlens-details">Back to
+                                project</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-card__inner">
+                        <div class="project-card__face project-card__front is-active" aria-hidden="false">
+                            <h4>Sri Lakshmi Shop Website</h4>
+                            <p>A responsive business website that helps customers explore the shop and get in touch.</p>
+                            <div class="project-card__tags" aria-label="Technologies">
+                                <span class="project-card__tag">HTML</span>
+                                <span class="project-card__tag">CSS</span>
+                                <span class="project-card__tag">JavaScript</span>
+                            </div>
+                            <button class="project-card__action" type="button" data-project-flip aria-expanded="false"
+                                aria-controls="sri-lakshmi-details">View project details</button>
+                        </div>
+                        <div class="project-card__face project-card__back" id="sri-lakshmi-details" aria-hidden="true"
+                            inert>
+                            <h4>Sri Lakshmi Shop Website</h4>
+                            <ul class="project-card__features">
+                                <li>Responsive design and user-friendly shop presentation</li>
+                                <li>Gmail integration for application communication</li>
+                                <li>Live deployed website</li>
+                            </ul>
+                            <p class="project-card__demo"><a href="https://sri-lakshmi-site.testingwbst.workers.dev"
+                                    target="_blank" rel="noopener noreferrer">Visit live website</a></p>
+                            <button class="project-card__action" type="button" data-project-flip aria-expanded="false"
+                                aria-label="Back to Sri Lakshmi Shop Website" aria-controls="sri-lakshmi-details">Back
+                                to project</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-content">
+            <h3>Contact</h3>
+            <p>Email: rivkahsweety@gmail.com</p>
+            <p>Phone: +91 8680001633</p>
+            <p>GitHub: <a href="https://github.com/rivkahreby" target="_blank"
+                    rel="noopener noreferrer">github.com/rivkahreby</a></p>
+        </div>
+    </section>
+    <section id="resume">
+        <div class="section-content">
+            <h4>Thank you for visiting my portfolio!</h4>
+            <h4>Feel free to reach out for collaboration or inquiries.</h4>
+        </div>
+    </section>
+
+    <section id="download">
+        <div class="section-content center">
+            <h3>Download Resume</h3>
+            <br>
+            <a href="./file.pdf" download="Repekkal_Resume.pdf" class="download-button">Download Resume</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 A. REPEKKAL. All rights reserved.</p>
     </footer>
 
     <div class="chatbot" id="chatbot">
         <div class="chatbot__panel" id="chatbot-panel" role="dialog" aria-labelledby="chatbot-title" hidden>
             <div class="chatbot__header">
                 <div>
-                    <h2 id="chatbot-title">Ask Repekkal</h2>
+                    <h2 id="chatbot-title">Ask</h2>
                     <p>Portfolio assistant</p>
                 </div>
                 <button class="chatbot__close" type="button" data-chatbot-close aria-label="Close chat">&times;</button>
@@ -564,152 +688,158 @@
             <div class="chatbot__messages" id="chatbot-messages" role="log" aria-live="polite"></div>
             <div class="chatbot__suggestions" id="chatbot-suggestions">
                 <button class="chatbot__chip" type="button" data-chat-prompt="What are your skills?">Skills</button>
-                <button class="chatbot__chip" type="button" data-chat-prompt="Tell me about your projects">Projects</button>
+                <button class="chatbot__chip" type="button"
+                    data-chat-prompt="Tell me about your projects">Projects</button>
                 <button class="chatbot__chip" type="button" data-chat-prompt="How can I contact you?">Contact</button>
-                <button class="chatbot__chip" type="button" data-chat-prompt="What is your education?">Education</button>
+                <button class="chatbot__chip" type="button"
+                    data-chat-prompt="What is your education?">Education</button>
             </div>
             <form class="chatbot__form" id="chatbot-form">
-                <label class="visually-hidden" for="chatbot-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Message</label>
-                <input class="chatbot__input" id="chatbot-input" type="text" autocomplete="off" placeholder="Ask about skills, projects, or contact…" />
+                <label class="visually-hidden" for="chatbot-input"
+                    style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Message</label>
+                <input class="chatbot__input" id="chatbot-input" type="text" autocomplete="off"
+                    placeholder="Ask about skills, projects, or contact…" />
                 <button class="chatbot__send" type="submit">Send</button>
             </form>
         </div>
-        <button class="chatbot__toggle" type="button" data-chatbot-open aria-expanded="false" aria-controls="chatbot-panel" aria-label="Open chat">💬</button>
+        <button class="chatbot__toggle" type="button" data-chatbot-open aria-expanded="false"
+            aria-controls="chatbot-panel" aria-label="Open chat">💬</button>
     </div>
- <script>
-    document.querySelectorAll('[data-project-flip]').forEach(button => {
-        button.addEventListener('click', () => {
-            const card = button.closest('.project-card');
-            const flipped = card.classList.toggle('is-flipped');
-            const front = card.querySelector('.project-card__front');
-            const back = card.querySelector('.project-card__back');
-            const activeFace = flipped ? back : front;
-            const inactiveFace = flipped ? front : back;
+    <script>
+        document.querySelectorAll('[data-project-flip]').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.project-card');
+                const flipped = card.classList.toggle('is-flipped');
+                const front = card.querySelector('.project-card__front');
+                const back = card.querySelector('.project-card__back');
+                const activeFace = flipped ? back : front;
+                const inactiveFace = flipped ? front : back;
 
-            inactiveFace.classList.remove('is-active');
-            inactiveFace.setAttribute('aria-hidden', 'true');
-            inactiveFace.setAttribute('inert', '');
-            activeFace.classList.add('is-active');
-            activeFace.removeAttribute('inert');
-            activeFace.setAttribute('aria-hidden', 'false');
-            activeFace.querySelector('[data-project-flip]').focus();
+                inactiveFace.classList.remove('is-active');
+                inactiveFace.setAttribute('aria-hidden', 'true');
+                inactiveFace.setAttribute('inert', '');
+                activeFace.classList.add('is-active');
+                activeFace.removeAttribute('inert');
+                activeFace.setAttribute('aria-hidden', 'false');
+                activeFace.querySelector('[data-project-flip]').focus();
 
-            card.querySelectorAll('[data-project-flip]').forEach(toggle => {
-                toggle.setAttribute('aria-expanded', String(flipped));
-            });
-        });
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
+                card.querySelectorAll('[data-project-flip]').forEach(toggle => {
+                    toggle.setAttribute('aria-expanded', String(flipped));
                 });
-            }
-        });
-    });
-
-    (function initPortfolioChatbot() {
-        const root = document.getElementById('chatbot');
-        const panel = document.getElementById('chatbot-panel');
-        const messages = document.getElementById('chatbot-messages');
-        const form = document.getElementById('chatbot-form');
-        const input = document.getElementById('chatbot-input');
-        const openBtn = document.querySelector('[data-chatbot-open]');
-        const closeBtn = document.querySelector('[data-chatbot-close]');
-        let greeted = false;
-
-        function addMessage(text, from) {
-            const bubble = document.createElement('div');
-            bubble.className = 'chatbot__bubble chatbot__bubble--' + from;
-            bubble.textContent = text;
-            messages.appendChild(bubble);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function replyTo(question) {
-            const q = question.toLowerCase();
-
-            if (/(hello|hi|hey|hai)/.test(q)) {
-                return 'Hi! I can tell you about Repekkal’s skills, education, projects, certifications, or how to get in touch.';
-            }
-            if (/(who|about|yourself|name|introduce)/.test(q)) {
-                return 'A. Repekkal is an aspiring full stack developer and B.Sc. IT graduate from Erode. They build web projects with HTML, CSS, JavaScript and Python, and are open to entry-level roles in Coimbatore and Erode.';
-            }
-            if (/(skill|stack|language|html|css|python|java|mongo)/.test(q)) {
-                return 'Skills: HTML, CSS, JavaScript, C, C++, Java, Python, MongoDB, Git & GitHub, plus VS Code and PyCharm.';
-            }
-            if (/(educat|college|degree|cgpa|study|studied|graduate)/.test(q)) {
-                return 'Bachelor of Information Technology at Erode Christian College of Arts and Science for Women (2023–2026). CGPA: 7.22/10.';
-            }
-            if (/(certif|leadership|naan|salesforce|ibm|zscaler|infosys)/.test(q)) {
-                return 'Certifications include Cybersecurity (Zscaler/Smartbridge, 99%), Salesforce Developer Agentforce Champion (99%), IBM Web Development Fundamentals (97%), Python – Infosys (78%), English Communication – The Hindu STEP (93%), and Project Lead for Naan Mudhalvan (2 terms).';
-            }
-            if (/(projectlens|mcp)/.test(q)) {
-                return 'ProjectLens is a Python MCP server that helps AI assistants search and analyze software projects, with path-traversal protection and structured analysis. GitHub: https://github.com/rivkahreby/projectlens-mcp';
-            }
-            if (/(lakshmi|shop|website)/.test(q)) {
-                return 'Sri Lakshmi Shop is a responsive HTML/CSS/JavaScript business site with contact via Gmail. Live site: https://sri-lakshmi-site.testingwbst.workers.dev';
-            }
-            if (/(project|work|built|portfolio)/.test(q)) {
-                return 'Two featured projects: ProjectLens MCP Server (Python, GitHub) and the Sri Lakshmi Shop website (HTML, CSS, JavaScript, live). Ask about either one for more detail.';
-            }
-            if (/(resume|cv|download)/.test(q)) {
-                return 'You can download the resume from the Download Resume section on this page.';
-            }
-            if (/(contact|email|phone|reach|hire|github)/.test(q)) {
-                return 'Email: rivkahsweety@gmail.com · Phone: +91 8680001633 · GitHub: https://github.com/rivkahreby';
-            }
-            if (/(location|where|erode|coimbatore|based)/.test(q)) {
-                return 'Based in Erode, and open to entry-level developer roles in Coimbatore and Erode.';
-            }
-            return 'I can help with skills, education, projects, certifications, resume, or contact details. What would you like to know?';
-        }
-
-        function sendQuestion(text) {
-            const question = text.trim();
-            if (!question) return;
-            addMessage(question, 'user');
-            addMessage(replyTo(question), 'bot');
-        }
-
-        function openChat() {
-            root.classList.add('is-open');
-            panel.hidden = false;
-            openBtn.setAttribute('aria-expanded', 'true');
-            if (!greeted) {
-                addMessage('Hi, I am Repekkal’s portfolio assistant. Ask me about skills, projects, education, or how to get in touch.', 'bot');
-                greeted = true;
-            }
-            input.focus();
-        }
-
-        function closeChat() {
-            root.classList.remove('is-open');
-            panel.hidden = true;
-            openBtn.setAttribute('aria-expanded', 'false');
-            openBtn.focus();
-        }
-
-        openBtn.addEventListener('click', openChat);
-        closeBtn.addEventListener('click', closeChat);
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            sendQuestion(input.value);
-            input.value = '';
-            input.focus();
-        });
-        document.querySelectorAll('[data-chat-prompt]').forEach(chip => {
-            chip.addEventListener('click', function () {
-                sendQuestion(chip.getAttribute('data-chat-prompt'));
             });
         });
-    })();
- </script>
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        (function initPortfolioChatbot() {
+            const root = document.getElementById('chatbot');
+            const panel = document.getElementById('chatbot-panel');
+            const messages = document.getElementById('chatbot-messages');
+            const form = document.getElementById('chatbot-form');
+            const input = document.getElementById('chatbot-input');
+            const openBtn = document.querySelector('[data-chatbot-open]');
+            const closeBtn = document.querySelector('[data-chatbot-close]');
+            let greeted = false;
+
+            function addMessage(text, from) {
+                const bubble = document.createElement('div');
+                bubble.className = 'chatbot__bubble chatbot__bubble--' + from;
+                bubble.textContent = text;
+                messages.appendChild(bubble);
+                messages.scrollTop = messages.scrollHeight;
+            }
+
+            function replyTo(question) {
+                const q = question.toLowerCase();
+
+                if (/(hello|hi|hey|hai)/.test(q)) {
+                    return 'Hi! I can tell you about Repekkal’s skills, education, projects, certifications, or how to get in touch.';
+                }
+                if (/(who|about|yourself|name|introduce)/.test(q)) {
+                    return 'A. Repekkal is an aspiring full stack developer and B.Sc. IT graduate from Erode. They build web projects with HTML, CSS, JavaScript and Python, and are open to entry-level roles in Coimbatore and Erode.';
+                }
+                if (/(skill|stack|language|html|css|python|java|mongo)/.test(q)) {
+                    return 'Skills: HTML, CSS, JavaScript, C, C++, Java, Python, MongoDB, Git & GitHub, plus VS Code and PyCharm.';
+                }
+                if (/(educat|college|degree|cgpa|study|studied|graduate)/.test(q)) {
+                    return 'Bachelor of Information Technology at Erode Christian College of Arts and Science for Women (2023–2026). CGPA: 7.22/10.';
+                }
+                if (/(certif|leadership|naan|salesforce|ibm|zscaler|infosys)/.test(q)) {
+                    return 'Certifications include Cybersecurity (Zscaler/Smartbridge, 99%), Salesforce Developer Agentforce Champion (99%), IBM Web Development Fundamentals (97%), Python – Infosys (78%), English Communication – The Hindu STEP (93%), and Project Lead for Naan Mudhalvan (2 terms).';
+                }
+                if (/(projectlens|mcp)/.test(q)) {
+                    return 'ProjectLens is a Python MCP server that helps AI assistants search and analyze software projects, with path-traversal protection and structured analysis. GitHub: https://github.com/rivkahreby/projectlens-mcp';
+                }
+                if (/(lakshmi|shop|website)/.test(q)) {
+                    return 'Sri Lakshmi Shop is a responsive HTML/CSS/JavaScript business site with contact via Gmail. Live site: https://sri-lakshmi-site.testingwbst.workers.dev';
+                }
+                if (/(project|work|built|portfolio)/.test(q)) {
+                    return 'Two featured projects: ProjectLens MCP Server (Python, GitHub) and the Sri Lakshmi Shop website (HTML, CSS, JavaScript, live). Ask about either one for more detail.';
+                }
+                if (/(resume|cv|download)/.test(q)) {
+                    return 'You can download the resume from the Download Resume section on this page.';
+                }
+                if (/(contact|email|phone|reach|hire|github)/.test(q)) {
+                    return 'Email: rivkahsweety@gmail.com · Phone: +91 8680001633 · GitHub: https://github.com/rivkahreby';
+                }
+                if (/(location|where|erode|coimbatore|based)/.test(q)) {
+                    return 'Based in Erode, and open to entry-level developer roles in Coimbatore and Erode.';
+                }
+                return 'I can help with skills, education, projects, certifications, resume, or contact details. What would you like to know?';
+            }
+
+            function sendQuestion(text) {
+                const question = text.trim();
+                if (!question) return;
+                addMessage(question, 'user');
+                addMessage(replyTo(question), 'bot');
+            }
+
+            function openChat() {
+                root.classList.add('is-open');
+                panel.hidden = false;
+                openBtn.setAttribute('aria-expanded', 'true');
+                if (!greeted) {
+                    addMessage('Hi, I am Repekkal’s portfolio assistant. Ask me about skills, projects, education, or how to get in touch.', 'bot');
+                    greeted = true;
+                }
+                input.focus();
+            }
+
+            function closeChat() {
+                root.classList.remove('is-open');
+                panel.hidden = true;
+                openBtn.setAttribute('aria-expanded', 'false');
+                openBtn.focus();
+            }
+
+            openBtn.addEventListener('click', openChat);
+            closeBtn.addEventListener('click', closeChat);
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                sendQuestion(input.value);
+                input.value = '';
+                input.focus();
+            });
+            document.querySelectorAll('[data-chat-prompt]').forEach(chip => {
+                chip.addEventListener('click', function () {
+                    sendQuestion(chip.getAttribute('data-chat-prompt'));
+                });
+            });
+        })();
+    </script>
 </body>
+
 </html>
